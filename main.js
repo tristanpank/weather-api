@@ -1,10 +1,19 @@
 weatherTest = document.getElementById("weather-test");
 
-const getWeatherData = async () => {
-    let response = await fetch("https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=ff959cd60bd81def53e946ffe7232d4b", {mode: "cors"});
+const getWeatherData = async (city) => {
+    let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=ff959cd60bd81def53e946ffe7232d4b`, {mode: "cors"});
     let data = await response.json();
     console.log(data);
-    weatherTest.textContent = data.main.temp;
+    let kelvinTemp = data.main.temp;
+    let farenheightTemp = (kelvinTemp - 273.15) * (9/5) + 32;
+    farenheightTemp = farenheightTemp.toFixed(2)
+    weatherTest.textContent = `${farenheightTemp} degrees`;
 }
 
-getWeatherData();
+let submitButton = document.getElementById("submit");
+submitButton.addEventListener('click', () => {
+    let cityInput = document.getElementById("city");
+    let cityText = cityInput.value;
+    getWeatherData(cityText);
+})
+
