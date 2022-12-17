@@ -93,6 +93,35 @@ function resetDivs(divs, data=undefined) {
     }
 }
 
+function getConditionSrc(weatherData) {
+    possibleConditions = {
+        "Thunderstorm": "thunder",
+        "Drizzle": "rainy-4",
+        "Rain": "rainy-6",
+        "Snow": "snowy-6",
+        "Clear": "day",
+        "Clouds": "cloudy-day-2",
+    }
+
+    let conditionSrc;
+    if (weatherData.condition in possibleConditions) {
+        conditionSrc = possibleConditions[weatherData.condition];
+    } else {
+        conditionSrc = "day";
+    }
+    return conditionSrc;
+
+    // try {
+    //     let conditionSrc = possibleConditions[weatherData.condition];
+    //     return conditionSrc;
+    // } catch (err) {
+    //     console.log(err);
+    //     let conditionSrc = "day";
+    //     return conditionSrc;
+    // } 
+
+}
+
 function main() {
     let submitButton = document.getElementById("submit");
     // Selects all divs associated with weather info
@@ -105,7 +134,7 @@ function main() {
     let inputBox = new InputBox(inputBoxElement);
     let locationName = document.getElementById("name");
     let row2Children = document.getElementById("row2children");
-
+    let imgCondition = document.getElementById("img-condition");
     
     
     submitButton.addEventListener('click', async (event) => {
@@ -119,6 +148,7 @@ function main() {
             resetDivs(weatherText, weatherData);
             inputBox.changeValidTrue();
             locationName.textContent = weatherData.name;
+            imgCondition.src = `./amcharts_weather_icons_1.0.0/animated/${getConditionSrc(weatherData)}.svg`;
             row2Children.style.opacity = 100; 
 
         } catch (err) {
