@@ -10,6 +10,7 @@ class InputBox {
         } else {
             this.element.style.borderColor = null;
         }
+        this.element.value = "";
     }
     changeValidFalse () {
         this.valid = false;
@@ -35,8 +36,10 @@ const getWeatherData = async (city) => {
         "wind_speed": data.wind.speed,
         "temp": convertToFarenheight(data.main.temp),
         "temp_min": convertToFarenheight(data.main.temp_min),
-        "temp_max": convertToFarenheight(data.main.temp_min),
+        "temp_max": convertToFarenheight(data.main.temp_max),
         "humidity": `${data.main.humidity}%`,
+        "condition": data.weather[0].main,
+        "feels_like": convertToFarenheight(data.main.feels_like),
     }
     
     return specificData;
@@ -69,16 +72,24 @@ const getWeatherData2 = (city) => {
 }
 
 function convertToFarenheight(kelvin) {
-    return ((kelvin - 273.15) * (9/5) + 32).toFixed(2);
+    return ((kelvin - 273.15) * (9/5) + 32).toFixed(2) + " °F";
 }
 
 function resetDivs(divs, data=undefined) {
+    // resets temperature divs
     for (let i = 0; i < divs.length; i++) {
         if (data === undefined) {
-            divs[i].textContent = divs[i].id;
+            divs[i].textContent = 30;
         } else {
             divs[i].textContent = data[divs[i].id];
         }
+    }
+    // checks for weather title
+    let breakdownTitle = document.getElementById("weather-breakdown");
+    if (data === undefined) {
+        breakdownTitle.textContent = "";
+    } else {
+        breakdownTitle.textContent = "Weather Breakdown";
     }
 }
 
@@ -93,6 +104,7 @@ function main() {
     let inputBoxElement = document.getElementById("location");
     let inputBox = new InputBox(inputBoxElement);
     let locationName = document.getElementById("name");
+    let row2Children = document.getElementById("row2children");
 
     
     
@@ -107,12 +119,14 @@ function main() {
             resetDivs(weatherText, weatherData);
             inputBox.changeValidTrue();
             locationName.textContent = weatherData.name;
+            row2Children.style.opacity = 100; 
 
         } catch (err) {
             console.log(err);
             resetDivs(weatherText);
             inputBox.changeValidFalse();
             locationName.textContent = "Invalid Location";
+            row2Children.style.opacity = 0;
         } finally {
             inputBox.changeBorder();
         }

@@ -23,7 +23,7 @@ body {
 }
 
 #row1 {
-    height: 40vh;
+    height: 25vh;
     background-color: aliceblue;
     display: flex;
     flex-direction: column;
@@ -47,10 +47,70 @@ body {
     gap: 5px;
 }
 
-#location {
-
-}
-
 #location:focus {
     outline: none;
+}
+
+button#submit {
+    width: 50%;
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+    background-color: #05445E;
+    color: aliceblue;
+    font-size: 1.25rem;
+}
+
+button#submit:hover {
+    background-color: #043347;
+}
+
+button#submit:active {
+    background-color: #021d29;
+}
+
+#row2 {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: aliceblue;
+    padding-top: 20px;
+    color: #05445E;
+    text-align: center;
+}
+
+#weather-breakdown {
+    color: #05445E;
+    font-weight: bold;
+    font-size: 1.75rem;
+}
+
+#temp {
+    font-size: 4rem;
+    text-align: center;
+}
+
+.temp-sub {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    font-size: 1.5rem;
+}
+
+#row2children {
+    opacity: 100;
+}
+
+.conditions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+#img-condition {
+    height: 100%;
+    width: 50%;
 }
