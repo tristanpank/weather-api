@@ -7,12 +7,16 @@
     <title>Weather API</title>
 </head>
 <body>
-    <div id="weather-test">Test</div>
-    <form action="" id="weather-input">
+    <form action="" id="weather-input" onsubmit="console.log('test')">
         <input type="text" id="city">
         <label for="city">City</label>
+        <button id="submit" type="submit">Submit</button>
     </form>
-    <button id="submit">Submit</button>
+    <div class="weather-text" id="temp"></div>
+    <div class="weather-text" id="temp_min"></div>
+    <div class="weather-text" id="temp_max"></div>
+    <div class="weather-text" id="humidity"></div>
+    <div class="weather-text" id="wind_speed"></div>
     <script src="./weather-api.js"></script>
     <!-- <script src="./main.js"></script> -->
 </body>
