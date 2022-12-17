@@ -7,6 +7,8 @@ class InputBox {
     changeBorder () {
         if (this.valid === false) {
             this.element.style.borderColor = "red";
+        } else {
+            this.element.style.borderColor = null;
         }
     }
     changeValidFalse () {
@@ -16,6 +18,7 @@ class InputBox {
         this.valid = true;
     }
 }
+
 
 // Using async/await
 const getWeatherData = async (city) => {
@@ -87,27 +90,29 @@ function main() {
 
     let weatherGif = document.getElementById("weather-gif");
 
-    let inputBoxElement = document.getElementById("city");
+    let inputBoxElement = document.getElementById("location");
     let inputBox = new InputBox(inputBoxElement);
+    let locationName = document.getElementById("name");
 
     
     
     submitButton.addEventListener('click', async (event) => {
         event.preventDefault();
-        let cityInput = document.getElementById("city");
         try{
-            let weatherData = await getWeatherData(cityInput.value);
+            let weatherData = await getWeatherData(inputBox.element.value);
             // let gifData = await getGif("sky");
             // weatherGif.src = gifData.data.images.original.url;
             console.log(weatherData);
             console.log(convertToFarenheight(weatherData.main.temp));
             resetDivs(weatherText, weatherData);
             inputBox.changeValidTrue();
+            locationName.textContent = weatherData.name;
 
         } catch (err) {
             console.log(err);
             resetDivs(weatherText);
             inputBox.changeValidFalse();
+            locationName.textContent = "Invalid Location";
         } finally {
             inputBox.changeBorder();
         }

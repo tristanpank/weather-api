@@ -5,19 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather API</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <form action="" id="weather-input" onsubmit="console.log('test')">
-        <input type="text" id="city">
-        <label for="city">City</label>
-        <button id="submit" type="submit">Submit</button>
-    </form>
-    <div class="weather-text" id="temp"></div>
-    <div class="weather-text" id="temp_min"></div>
-    <div class="weather-text" id="temp_max"></div>
-    <div class="weather-text" id="humidity"></div>
-    <div class="weather-text" id="wind_speed"></div>
-    <img src="" alt="" class="weather-gif" id="weather-gif">
+    <div id="header">
+        <div id="title">Weather API</div>
+    </div>
+    <div class="row" id="row1">
+        <div id="name">Enter Location</div>
+        <form action="" id="weather-input">
+            <input type="text" id="location">
+            <div id="input-info">"City, State" E.G. "Ocala, Florida"</div>
+            <!-- <label for="city">City</label> -->
+            <button id="submit" type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="row" id="row2">
+        <div class="weather-text" id="temp"></div>
+        <div class="weather-text" id="temp_min"></div>
+        <div class="weather-text" id="temp_max"></div>
+        <div class="weather-text" id="humidity"></div>
+        <div class="weather-text" id="wind_speed"></div>
+        <img src="" alt="" class="weather-gif" id="weather-gif">
+    </div>
     <script src="./weather-api.js"></script>
     <!-- <script src="./main.js"></script> -->
 </body>

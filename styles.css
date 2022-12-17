@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+body {
+    font-family: 'Rubik', 'Sans-serif';
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    height: 100vh;
+    margin: 0;
+}
+
+#header {
+    height: 5vh;
+    background-color: #05445E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#title {
+    color: aliceblue;
+    font-size: 1.5rem;
+}
+
+#row1 {
+    height: 40vh;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#row1 #name {
+    font-size: 2rem;
+    color: #05445E;
+    font-weight: bold;
+
+}
+
+#row1 #weather-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+#location {
+
+}
+
+#location:focus {
+    outline: none;
+}
