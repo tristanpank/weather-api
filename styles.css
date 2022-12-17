@@ -79,6 +79,7 @@ button#submit:active {
     padding-top: 20px;
     color: #05445E;
     text-align: center;
+    font-size: 1.5rem;
 }
 
 #weather-breakdown {
@@ -100,7 +101,7 @@ button#submit:active {
 }
 
 #row2children {
-    opacity: 100;
+    opacity: 0;
 }
 
 .conditions {
@@ -113,4 +114,16 @@ button#submit:active {
 #img-condition {
     height: 100%;
     width: 50%;
+}
+
+.humidity {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wind {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

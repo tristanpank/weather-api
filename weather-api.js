@@ -33,7 +33,7 @@ const getWeatherData = async (city) => {
         "main": data.main,
         "clouds": data.clouds,
         "wind": data.wind,
-        "wind_speed": data.wind.speed,
+        "wind_speed": `${data.wind.speed} m/s`,
         "temp": convertToFarenheight(data.main.temp),
         "temp_min": convertToFarenheight(data.main.temp_min),
         "temp_max": convertToFarenheight(data.main.temp_max),
