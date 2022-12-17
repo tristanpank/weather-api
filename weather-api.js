@@ -26,6 +26,13 @@ const getWeatherData = async (city) => {
     // weatherTest.textContent = `${farenheightTemp} degrees`;
 }
 
+const getGif = async (searchType) => {
+    let response = await fetch(`http://api.giphy.com/v1/gifs/translate?s=${searchType}&api_key=0Q5Jf6P8VsmDv5VNeUwzQrFNRj5u3wFt`, {mode: "cors"});
+    let data = await response.json();
+    console.log(data);
+    return data;
+}
+
 // Using promises
 const getWeatherData2 = (city) => {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=ff959cd60bd81def53e946ffe7232d4b`, {mode: "cors"})
@@ -60,6 +67,8 @@ function main() {
     // Selects all divs associated with weather info
     let weatherText = document.querySelectorAll(".weather-text");
     resetDivs(weatherText);
+
+    let weatherGif = document.getElementById("weather-gif");
     
     
     submitButton.addEventListener('click', async (event) => {
@@ -67,15 +76,20 @@ function main() {
         let cityInput = document.getElementById("city");
         try{
             let weatherData = await getWeatherData(cityInput.value);
+            // let gifData = await getGif("sky");
+            // weatherGif.src = gifData.data.images.original.url;
             console.log(weatherData);
             console.log(convertToFarenheight(weatherData.main.temp));
             resetDivs(weatherText, weatherData);
+
         }
         catch (err){
             console.log(err);
             resetDivs(weatherText);
         }
     })
+
+    // getGif("snow");
 }
 
 main();
