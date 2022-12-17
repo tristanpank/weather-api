@@ -45,14 +45,23 @@ function convertToFarenheight(kelvin) {
     return ((kelvin - 273.15) * (9/5) + 32).toFixed(2);
 }
 
+function resetDivs(divs, data=undefined) {
+    for (let i = 0; i < divs.length; i++) {
+        if (data === undefined) {
+            divs[i].textContent = divs[i].id;
+        } else {
+            divs[i].textContent = data[divs[i].id];
+        }
+    }
+}
 
 function main() {
-    let weatherTest = document.getElementById("weather-test");
     let submitButton = document.getElementById("submit");
+    // Selects all divs associated with weather info
     let weatherText = document.querySelectorAll(".weather-text");
-    for (let i=0; i < weatherText.length; i++){
-        weatherText[i].textContent = weatherText[i].id;
-    }
+    resetDivs(weatherText);
+    
+    
     submitButton.addEventListener('click', async (event) => {
         event.preventDefault();
         let cityInput = document.getElementById("city");
@@ -60,12 +69,11 @@ function main() {
             let weatherData = await getWeatherData(cityInput.value);
             console.log(weatherData);
             console.log(convertToFarenheight(weatherData.main.temp));
-            for (let i = 0; i < weatherText.length; i++){
-                weatherText[i].textContent = weatherData[weatherText[i].id];
-            }
+            resetDivs(weatherText, weatherData);
         }
         catch (err){
             console.log(err);
+            resetDivs(weatherText);
         }
     })
 }
